@@ -2,5 +2,7 @@
 
 echo "Script to Install Kubernetes"
 
-sudo apt-get update
+sudo sudo
+apt-get update
+# sudo apt-get upgrade
 
