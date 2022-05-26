@@ -73,10 +73,11 @@ sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+# To restart the containerd if it is not running
 rm /etc/containerd/config.toml
 systemctl restart containerd
 # Joining depends on the output of the control pane
-kubeadm join 192.168.10.214:6443 --token nng5hp.7c06afb788qg77sm --discovery-token-ca-cert-hash sha256:82af8e99dc927bdc1dec984903683e11209dd6367bb7133267a060db58304ffd
+# kubeadm join 192.168.10.214:6443 --token nng5hp.7c06afb788qg77sm --discovery-token-ca-cert-hash sha256:82af8e99dc927bdc1dec984903683e11209dd6367bb7133267a060db58304ffd
 
 # #Install Calico   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
 # # Install the Tigera Calico operator and custom resource definitions.
