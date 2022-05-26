@@ -47,7 +47,6 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-
 # Link here : https://github.com/containerd/containerd/blob/main/docs/getting-started.md#step-3-installing-cni-plugins
 #Step 1: Installing containerd
 curl https://github.com/containerd/containerd/releases/download/v1.6.4/containerd-1.6.4-linux-amd64.tar.gz
@@ -73,24 +72,26 @@ sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
 # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+
+### Make the joining at the end after installing the pod network
 # To restart the containerd if it is not running
 rm /etc/containerd/config.toml
-systemctl restart containerd
+sudo systemctl restart containerd
 # Joining depends on the output of the control pane
 # kubeadm join 192.168.10.214:6443 --token nng5hp.7c06afb788qg77sm --discovery-token-ca-cert-hash sha256:82af8e99dc927bdc1dec984903683e11209dd6367bb7133267a060db58304ffd
 
-# #Install Calico   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
-# # Install the Tigera Calico operator and custom resource definitions.
-# kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+#Install Calico  https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
+# Install the Tigera Calico operator and custom resource definitions.
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
 
-# # Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the installation reference.
-# kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+# Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the installation reference.
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
 
-# # Confirm that all of the pods are running with the following command.
-# watch kubectl get pods -n calico-system
+# Confirm that all of the pods are running with the following command.
+watch kubectl get pods -n calico-system
 
-# # Wait until each pod has the STATUS of Running.
-# # Note: The Tigera operator installs resources in the calico-system namespace. Other install methods may use the kube-system namespace instead.
+# Wait until each pod has the STATUS of Running.
+# Note: The Tigera operator installs resources in the calico-system namespace. Other install methods may use the kube-system namespace instead.
 
 
 
