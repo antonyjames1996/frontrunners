@@ -64,27 +64,27 @@ mkdir -p /opt/cni/bin
 sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
 
 
-# #Initializing your control-plane node with pod networking using Calico
-# sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+#Initializing your control-plane node with pod networking using Calico
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 
-# # To start using your cluster, you need to run the following as a regular user:
+# To start using your cluster, you need to run the following as a regular user:
 
-# mkdir -p $HOME/.kube
-# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-# #Install Calico   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
-# # Install the Tigera Calico operator and custom resource definitions.
-# kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+#Install Calico   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
+# Install the Tigera Calico operator and custom resource definitions.
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
 
-# # Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the installation reference.
-# kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+# Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the installation reference.
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
 
-# # Confirm that all of the pods are running with the following command.
-# watch kubectl get pods -n calico-system
+# Confirm that all of the pods are running with the following command.
+watch kubectl get pods -n calico-system
 
-# # Wait until each pod has the STATUS of Running.
-# # Note: The Tigera operator installs resources in the calico-system namespace. Other install methods may use the kube-system namespace instead.
+# Wait until each pod has the STATUS of Running.
+# Note: The Tigera operator installs resources in the calico-system namespace. Other install methods may use the kube-system namespace instead.
 
 
 

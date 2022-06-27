@@ -88,7 +88,7 @@ kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator
 kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
 
 # Confirm that all of the pods are running with the following command.
-watch kubectl get pods -n calico-system
+# watch kubectl get pods -n calico-system
 
 # Wait until each pod has the STATUS of Running.
 # Note: The Tigera operator installs resources in the calico-system namespace. Other install methods may use the kube-system namespace instead.
